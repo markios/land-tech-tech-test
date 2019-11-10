@@ -1,0 +1,30 @@
+.SoldProperties {
+  height: 100%;
+  margin: 50px auto 100px;
+  width: 100%;
+  max-width: 1500px;
+  max-height: 1500px;
+}
+
+.SoldProperties__Grid {
+  position: relative;
+}
+
+.SoldProperties__List {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+}
+
+.SoldProperties__List__Menu {
+  margin: 0 0 0 auto;
+}
+
+.SoldProperties__List__Menu__Item {
+  display: flex;
+  align-items: center;
+}
+
+.SoldProperties__List__Menu__Item span {
+  margin: 0 5px 0;
+}

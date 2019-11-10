@@ -1,0 +1,9 @@
+.List {
+  padding: 0;
+  list-style: none;
+}
+
+.List--horizontal li {
+  display: inline-block;
+  margin-left: 10px;
+}

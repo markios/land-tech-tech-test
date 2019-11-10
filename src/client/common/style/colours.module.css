@@ -1,0 +1,36 @@
+
+.colourMain {
+  color: var(--main-colour);
+}
+
+.colourSecondary {
+  color: var(--secondary-colour);
+}
+
+.coloursError {
+  color: var(--error-colour);
+}
+
+.fillMain {
+  fill: var(--main-colour);
+}
+
+.fillGroupOne {
+  fill: var(--group-one-colour);
+}
+
+.fillGroupTwo {
+  fill: var(--group-two-colour);
+}
+
+.fillGroupThree {
+  fill: var(--group-three-colour);
+}
+
+.fillGroupFour {
+  fill: var(--group-four-colour);
+}
+
+.fillGroupFive {
+  fill: var(--group-five-colour);
+}

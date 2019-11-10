@@ -1,0 +1,24 @@
+
+/* Types */
+.mainFont {
+  font-family: Helvetica, sans-serif;
+}
+
+
+/* Sizes */
+
+.fontSizeL {
+  font-size: 30px;
+}
+
+.fontSizeM {
+  font-size: 20px;
+}
+
+.fontSizeS {
+  font-size: 14px;
+}
+
+.fontSizeXS {
+  font-size: 10px;
+}

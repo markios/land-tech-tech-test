@@ -1,0 +1,17 @@
+
+.Grid {
+  background-size: calc(100% / 100) calc(100% / 100);
+  background-image: radial-gradient(circle, var(--main-colour) 1px, rgba(0, 0, 0, 0) 1px);
+  position: relative;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(100, 1fr);
+  grid-template-rows: repeat(100, 1fr);
+  grid-gap: 0;
+}
+
+.Grid__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

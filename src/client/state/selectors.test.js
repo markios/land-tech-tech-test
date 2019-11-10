@@ -1,11 +1,26 @@
-import selectors from './selectors';
+import { mapPropertiesForGroup, formatToLocalCurrency } from './selectors';
 import constants from './constants';
 
 
 describe('Selectors', () => {
 
   it('exists', () => {
-    expect(selectors).not.toBeUndefined();
+    expect(mapPropertiesForGroup).not.toBeUndefined();
+  });
+
+
+  describe('formatToLocalCurrency', () => {
+    const TEST_SCENARIOS = [
+      [100, '£100'],
+      [1000, '£1,000'],
+      [10000, '£10,000'],
+      [100000, '£100,000'],
+      [1000000, '£1,000,000'],
+    ];
+
+    it.each(TEST_SCENARIOS)('Correctly converts int %i to %s', (integer, expected) => {
+      expect(formatToLocalCurrency(integer)).toEqual(expected);
+    });
   });
 
   describe('mapPropertiesForGroup', () => {
@@ -19,13 +34,7 @@ describe('Selectors', () => {
     ]
 
     it('provides a mapPropertiesForGroupSelector', () => {
-      const state = {
-        properties: [],
-      };
-
-      const propertySelectors = selectors(state);
-      
-      expect(propertySelectors.mapPropertiesForGroup).not.toBeUndefined();
+      expect(mapPropertiesForGroup).not.toBeUndefined();
     });
 
     it('correctly maps an empty list', () => {
@@ -33,10 +42,8 @@ describe('Selectors', () => {
         records: [],
       };
 
-      const { mapPropertiesForGroup } = selectors(state);
-
       // act
-      const result = mapPropertiesForGroup();
+      const result = mapPropertiesForGroup(state);
       
       expect(result).toEqual([]);
     });
@@ -50,10 +57,10 @@ describe('Selectors', () => {
         }],
       };
 
-      const { mapPropertiesForGroup } = selectors(state);
-
       // act
-      const results = mapPropertiesForGroup();
+      const results = mapPropertiesForGroup(state);
+
+      // assert
       expect(results.find(({group}) => group === expectedGroup)).not.toBeUndefined();
     });
   });

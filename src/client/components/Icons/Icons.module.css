@@ -1,0 +1,14 @@
+.Icons {
+  display: none;
+}
+
+.Icons__item {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+}
+
+.Icons__item--lg {
+  width: 20px;
+  height: 20px;
+}

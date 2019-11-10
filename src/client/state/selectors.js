@@ -15,17 +15,21 @@ const getGroupFor = (percentage) => {
   }
 }
 
-const selectors = (state) => ({
-  mapPropertiesForGroup: () => {
-    const highestValue = state.records.reduce((r, {price}) => price > r ? price : r, -1);
-    return state.records.map((property) => {
-      const group = getGroupFor(property.price / highestValue)
-       return {
-        ...property,
-        group,
-      }
-    });
-  }
-});
 
-export default selectors;
+const formatToLocalCurrency = (num) => `£${new Intl.NumberFormat('en-GB', { maximumSignificantDigits: 3 }).format(num)}`;
+
+const mapPropertiesForGroup = (state) => {
+  const highestValue = state.records.reduce((r, {price}) => Number(price) > r ? price : r, 0);
+  return state.records.map((property) => {
+    const group = getGroupFor(property.price / highestValue)
+      return {
+      ...property,
+      group,
+    }
+  });
+};
+
+export {
+  mapPropertiesForGroup,
+  formatToLocalCurrency
+};
