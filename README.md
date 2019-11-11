@@ -1,68 +1,93 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Land Tech Test
 
-## Available Scripts
+This test completed by Mark Kellett as per the request from Land Tech. 
 
-In the project directory, you can run:
+## Requirements
 
-### `npm start`
+You have been given a set of data points, with each item taking the following form:
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+X Y P
+Where:
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+0 <= X < 100
+0 <= Y < 100
+10000 < P < 10000000
+X and Y represent the coordinates of a house which has been sold, and P is the price in which it was sold. For example, the point "5 10 100000" would be interpreted as a house sold for £100,000 at the point (5, 10).
 
-### `npm test`
+Using this data plot each point on a grid. The points should be filled with a colour representing how expensive a house was in relation to other houses. The choice of colour is up to you, however, you should use a different colour for each of the following groups:
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+0% - 5%
+5% - 25%
+25% - 75%
+75% - 95%
+95% - 100%
+For back-end or terminal solutions, how you represent colour for each point is up to you.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Technical Architecture
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+To run this project please use Node 12 and latest version of Chrome / Safari.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+nvm use 12
+```
 
-### `npm run eject`
+### Install Node Modules
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```
+npm i
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Server
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```
+npm run start:server
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Client
 
-## Learn More
+```
+npm run start
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Tests
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+npm run test
+```
 
-### Code Splitting
+## Server Approach
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+I wanted with this test to get a simple grid working based off the required data sent for sold properties. It was clear that I needed a simple Node Server which could simple return me the data points in a JSON format with a simple response envelope. 
 
-### Analyzing the Bundle Size
+The response envelope is a standard approach which means we can attach metadata to the response and also gives us options to further improve later with pagination or with grid max and min values. 
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+I have simple walked the data from a file read and kept it in memory. This is fine for a single dataset but obviously this is less optimal for production.
 
-### Making a Progressive Web App
+### Client
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+The bare minimum requirement here I figured was to get it rendering with some information useful for you to be able to understand the data. I opted for a css-grid approach which gives you the ability to setup a grid and then append grid items by just specifying the x and y coordinates. Grid support is good, and this makes for a much simpler solution. I also went straight for desktop rendering as mobile would struggle for a number of reasons
 
-### Advanced Configuration
+1. Size of the dataset would cripple older devices
+2. Screen realestate is limited for data this large (100 x 100)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+I have made the grid work at 1200 x 1200 as any smaller and the data would be really squashed together. I have also calculated a background to show the dots on the grid. With some more tweaking you could use css-variables to recalculate the sizes per grid data set and make it look great irrespective number of data items (something restricted with pre-calculated styles previously). 
 
-### Deployment
+With regards to the structure of the client I have opted for SoldProperties as being a stateful component, and the others all being (where applicable) stateless (dumb) components. SoldProperties is therefore composite and we could easily create a different one for different use cases as it has very little of it's own specific markup. 
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+This approach allows us to keep the responsibility of data fetching and event handlers bound the most suitable Higher Order Component which in my opinion is a sensible pattern.
 
-### `npm run build` fails to minify
+Testing others therefore becomes easy and makes for the formation of a component library a worthwhile abstraction for various reasons.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+I also didn't really use any React libraries here. The reason for which is that you can achieve decent results for most components with a little css. I love the approach of _Do as much as you can with css and then use JS_. 
+
+## Styling
+
+I have used BEM for the styling, purely because it was create-reat-app supports it out of the box and it works well. The css modules also deduplicate the css making it more normalised. However I am a fan of atomic css and think it offers by convention the ability to make css more dry. 
+
+## Enhancements
+
+1. I would like to make the grid resize according the data set size for max X and max Y. 
+2. Filtering of items by making the categories clickable. 
+3. Some nice animations.
+4. Lazy loading components that are not in the viewport. 
