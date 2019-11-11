@@ -81,6 +81,10 @@ Testing others therefore becomes easy and makes for the formation of a component
 
 I also didn't really use any React libraries here. The reason for which is that you can achieve decent results for most components with a little css. I love the approach of _Do as much as you can with css and then use JS_. 
 
+I also decided when filtering that the filters overlapped, meaning that it was possible for one item to be in two categories as the boundaries were the same i.e. 0-5% 5%-25%. So I made an adjustment to that it actually represented 0-5% > 6%-25% etc. 
+
+Normally I would have gained clarity on this but decided to make an executive decision. 
+
 ## Styling
 
 I have used BEM for the styling, purely because it was create-reat-app supports it out of the box and it works well. The css modules also deduplicate the css making it more normalised. However I am a fan of atomic css and think it offers by convention the ability to make css more dry. 
