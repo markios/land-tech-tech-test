@@ -56,6 +56,16 @@ npm run start
 npm run test
 ```
 
+## General Approach
+
+I considered this task and decided to get a decent simple grid working for one viewport type (that most likely used) and to get a simple server working which formats the data as given. I wanted just enough UI to make it useful and also to give a solution that would work well due to the sheer number of items in it (2000+!!). 
+
+Where I could I used TDD (for simple modules and the server) and limited myself to testing the parts which I deemed the most pertinent. In production obviously I go for full coverage. 
+
+I did have an issue with testing my useFetch function due to a dodgy version of react locally, so I omitted these tests in this case and ran out of time. 
+
+I spend approx 3.5 - 4 hours on this task as I have a cold and needed frequent lemsip :-).
+
 ## Server Approach
 
 I wanted with this test to get a simple grid working based off the required data sent for sold properties. It was clear that I needed a simple Node Server which could simple return me the data points in a JSON format with a simple response envelope. 
@@ -64,7 +74,7 @@ The response envelope is a standard approach which means we can attach metadata 
 
 I have simple walked the data from a file read and kept it in memory. This is fine for a single dataset but obviously this is less optimal for production.
 
-### Client
+### Client Approach
 
 The bare minimum requirement here I figured was to get it rendering with some information useful for you to be able to understand the data. I opted for a css-grid approach which gives you the ability to setup a grid and then append grid items by just specifying the x and y coordinates. Grid support is good, and this makes for a much simpler solution. I also went straight for desktop rendering as mobile would struggle for a number of reasons
 
