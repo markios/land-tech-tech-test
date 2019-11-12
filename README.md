@@ -104,4 +104,9 @@ I have used BEM for the styling, purely because it was create-reat-app supports 
 1. I would like to make the grid resize according the data set size for max X and max Y. 
 2. Filtering of items by making the categories clickable. 
 3. Some nice animations.
-4. Lazy loading components that are not in the viewport. 
+4. Lazy loading components that are not in the viewport.
+5. Memoization of selector based on URL
+6. Refactoring combing css classes
+7. Use of Typescript or PropTypes for typesafety etc...
+
+
